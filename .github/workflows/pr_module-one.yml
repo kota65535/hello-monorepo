@@ -3,7 +3,7 @@ name: Pull request on module-one
 on:
   pull_request:
     paths:
-      - 'module-one/*'
+      - 'module-one/**'
 
 jobs:
   build:
