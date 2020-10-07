@@ -39,8 +39,9 @@ task setDevelopmentVersion {
 task prepareRelease {
     dependsOn setReleaseVersion
     doFirst {
+        def tag = "v${version}"
         exec { commandLine "git", "push", "origin", "HEAD" }
-        exec { commandLine "git", "push", "origin", "--tags" }
+        exec { commandLine "git", "push", "origin", "${tag}" }
     }
 }
 
