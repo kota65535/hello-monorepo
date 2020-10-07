@@ -7,7 +7,7 @@ def writeVersionFile(version) {
 task setReleaseVersion {
     doFirst {
         def matcher = version =~ /^(\d+)\.(\d+)\.(\d+)-SNAPSHOT$/
-        assert matcher.matches()
+        assert matcher.matches(), "Invalid version: ${version}"
         def (major, minor, patch) = matcher[0][1..3].collect { v -> v as Integer}
         // set new version
         version = "${major}.${minor}.${patch}"
@@ -24,7 +24,7 @@ task setReleaseVersion {
 task setDevelopmentVersion {
     doFirst {
         def matcher = version =~ /^(\d+)\.(\d+)\.(\d+)$/
-        assert matcher.matches()
+        assert matcher.matches(), "Invalid version: ${version}"
         def (major, minor, patch) = matcher[0][1..3].collect { v -> v as Integer}
         // set new version
         version = "${major}.${minor}.${patch + 1}-SNAPSHOT"
