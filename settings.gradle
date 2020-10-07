@@ -1,0 +1,9 @@
+
+rootProject.name = 'hello-monorepo'
+include 'module-one'
+include 'module-one:module-one-app'
+include 'module-one:module-one-spec'
+include 'module-two'
+include 'module-two:module-two-app'
+include 'module-two:module-two-spec'
+
