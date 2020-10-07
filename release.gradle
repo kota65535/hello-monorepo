@@ -36,8 +36,12 @@ task setDevelopmentVersion {
     }
 }
 
+// Preparation for release.
+// - set release version & tag
+// - build
+// - push
 task prepareRelease {
-    dependsOn setReleaseVersion
+    dependsOn setReleaseVersion, build
     doFirst {
         def tag = "v${version}"
         exec { commandLine "git", "push", "origin", "HEAD" }
@@ -45,8 +49,12 @@ task prepareRelease {
     }
 }
 
+// Perform release.
+// - publish
+// - set next development version
+// - push
 task performRelease {
-    dependsOn publish, setDevelopmentVersion
+    dependsOn subprojects*.tasks.publish, setDevelopmentVersion
     doFirst {
         exec { commandLine "git", "push", "origin", "HEAD" }
     }
